@@ -1,90 +1,64 @@
 package com.example.olioharjoitusty;
 
-import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
-
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import com.example.olioharjoitusty.ui.login.LoginActivity;
+import com.google.android.material.navigation.NavigationView;
+
 
 public class MainActivity extends AppCompatActivity {
-    private FirebaseAuth mAuth;
+    private DrawerLayout nDrawerlayout;
+    private ActionBarDrawerToggle nToggle;
     Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        nDrawerlayout = (DrawerLayout) findViewById(R.id.drawerLayout);
 
-        context = this;
-        // Initialize Firebase Auth
-        FirebaseApp.initializeApp(context);
-        mAuth = FirebaseAuth.getInstance();
+        nToggle = new ActionBarDrawerToggle(this, nDrawerlayout,R.string.open,R.string.close);
+        nDrawerlayout.addDrawerListener(nToggle);
+        nToggle.syncState();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        final NavigationView nav_view = (NavigationView) findViewById(R.id.navigationView);
+        nav_view.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                int id = menuItem.getItemId();
+
+                if(id == R.id.nav_login){
+                    String s = getResources().getString(R.string.login);
+                    Toast.makeText(MainActivity.this, s, Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                    return true;
+                }
+                return false;
+            }
+        });
     }
-
     @Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser != null){
-            reload();
+    public boolean onOptionsItemSelected(MenuItem item){
+        if (nToggle.onOptionsItemSelected(item)){
+            return true;
         }
+        return super.onOptionsItemSelected(item);
     }
 
-    private void createAccount(String email, String password) {
-        // [START create_user_with_email]
-        mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "createUserWithEmail:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                            Toast.makeText(MainActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                            updateUI(null);
-                        }
-                    }
-                });
-        // [END create_user_with_email]
-    }
-    private void signIn(String email, String password){
-        mAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInWithEmail:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "signInWithEmail:failure", task.getException());
-                            Toast.makeText(MainActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                            updateUI(null);
-                        }
-                    }
-                });
-    }
-    private void reload() { }
-    private void updateUI(FirebaseUser user) {
-    }
+
 }
