@@ -18,7 +18,6 @@ import com.google.firebase.auth.FirebaseUser;
 public class EmailPasswordActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,5 +81,8 @@ public class EmailPasswordActivity extends AppCompatActivity {
     }
     private void reload() { }
     private void updateUI(FirebaseUser user) {
+        if (user != null){
+
+        }
     }
 }
