@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    compileSdk 29
+    compileSdk 31
 
     defaultConfig {
         applicationId "com.example.olioharjoitusty"
