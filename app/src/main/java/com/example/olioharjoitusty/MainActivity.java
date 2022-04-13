@@ -30,8 +30,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         nDrawerlayout = (DrawerLayout) findViewById(R.id.drawerLayout);
-        TextView text = (TextView)findViewById(R.id.textView);
-
         nToggle = new ActionBarDrawerToggle(this, nDrawerlayout,R.string.open,R.string.close);
         nDrawerlayout.addDrawerListener(nToggle);
         nToggle.syncState();
@@ -45,12 +43,13 @@ public class MainActivity extends AppCompatActivity {
                 if(id == R.id.nav_login){
                     String s = getResources().getString(R.string.login);
                     Toast.makeText(MainActivity.this, s, Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(MainActivity.this, EmailPasswordActivity.class);
-                    startActivityForResult(intent,1);
+                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                    startActivity(intent);
                     return true;
                 }
                 return false;
             }
+
         });
     }
     @Override
@@ -61,16 +60,6 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1) {
-            if (resultCode == RESULT_OK) {
-                String value = data.getStringExtra("key");
-                TextView text = (TextView)findViewById(R.id.textView);
-                text.setText(value);
-            }
-        }
 
-    }
+
 }
