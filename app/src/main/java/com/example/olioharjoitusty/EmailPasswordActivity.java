@@ -121,11 +121,13 @@ public class EmailPasswordActivity extends AppCompatActivity {
     private void reload() { }
     private void updateUI(FirebaseUser user) {
         if (user != null){
-            String path = user.getUid();
-            HashMap <String , Object> map = new HashMap<>();
-            map.put("Greeting", "HELLO");
-            map.put("Hotel", "Trivago");
-            FirebaseDatabase.getInstance().getReference().child(path).child("message").updateChildren(map);
+            //String path = user.getUid();
+            //TÄSSÄ ON MITEN KIRJOITTAA FIREBASEEN
+            //HashMap <String , Object> map = new HashMap<>();
+            //map.put("Greeting", "HELLO");
+            //map.put("Hotel", "Trivago");
+            //FirebaseDatabase.getInstance("https://olio-riku-default-rtdb.europe-west1.firebasedatabase.app/").getReference().child(path).child("message").updateChildren(map);
+
             String username = user.getEmail();
             Toast.makeText(EmailPasswordActivity.this, "Logging in succeeded!", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent();
