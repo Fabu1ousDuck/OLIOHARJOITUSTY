@@ -18,12 +18,12 @@ import android.widget.Toast;
 
 import com.example.olioharjoitusty.ui.login.LoginActivity;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.database.DatabaseReference;
 
 
 public class MainActivity extends AppCompatActivity {
     private DrawerLayout nDrawerlayout;
     private ActionBarDrawerToggle nToggle;
-    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +43,8 @@ public class MainActivity extends AppCompatActivity {
                 if(id == R.id.nav_login){
                     String s = getResources().getString(R.string.login);
                     Toast.makeText(MainActivity.this, s, Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                    startActivity(intent);
+                    Intent intent = new Intent(MainActivity.this, EmailPasswordActivity.class);
+                    startActivityForResult(intent,1);
                     return true;
                 }
                 return false;
@@ -60,6 +60,19 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            if (resultCode == RESULT_OK) {
+                String value = data.getStringExtra("key");
+                TextView text = (TextView)findViewById(R.id.textView);
+                text.setText(value);
+
+            }
+        }
+
+    }
 
 
 }

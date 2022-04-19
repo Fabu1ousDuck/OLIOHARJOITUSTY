@@ -23,6 +23,10 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
 
 public class EmailPasswordActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
@@ -117,6 +121,11 @@ public class EmailPasswordActivity extends AppCompatActivity {
     private void reload() { }
     private void updateUI(FirebaseUser user) {
         if (user != null){
+            String path = user.getUid();
+            HashMap <String , Object> map = new HashMap<>();
+            map.put("Greeting", "HELLO");
+            map.put("Hotel", "Trivago");
+            FirebaseDatabase.getInstance().getReference().child(path).child("message").updateChildren(map);
             String username = user.getEmail();
             Toast.makeText(EmailPasswordActivity.this, "Logging in succeeded!", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent();

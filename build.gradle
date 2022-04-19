@@ -6,8 +6,6 @@ buildscript {
         google()  // Google's Maven repository
     }
     dependencies {
-        // ...
-
         // Add the following line:
         classpath 'com.google.gms:google-services:4.3.10'  // Google Services plugin
 
@@ -18,14 +16,6 @@ plugins {
     id 'com.android.library' version '7.1.2' apply false
 }
 
-allprojects {
-    // ...
-    repositories {
-        // Check that you have the following line (if not, add it):
-        // Google's Maven repository
-        // ...
-    }
-}
 
 task clean(type: Delete) {
     delete rootProject.buildDir
