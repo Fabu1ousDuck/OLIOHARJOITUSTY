@@ -8,7 +8,7 @@ import android.util.Patterns;
 
 import com.example.olioharjoitusty.data.LoginRepository;
 import com.example.olioharjoitusty.data.Result;
-import com.example.olioharjoitusty.data.model.LoggedInUser;
+import com.example.olioharjoitusty.LoggedInUser;
 import com.example.olioharjoitusty.R;
 
 public class LoginViewModel extends ViewModel {

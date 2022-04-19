@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.olioharjoitusty.ui.login.LoginActivity;
+import com.firebase.ui.auth.data.model.User;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DatabaseReference;
 
@@ -47,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
                     startActivityForResult(intent,1);
                     return true;
                 }
+
                 return false;
             }
 
@@ -65,9 +68,9 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1) {
             if (resultCode == RESULT_OK) {
-                String value = data.getStringExtra("key");
+                String username = data.getStringExtra("name");
                 TextView text = (TextView)findViewById(R.id.textView);
-                text.setText(value);
+
 
             }
         }

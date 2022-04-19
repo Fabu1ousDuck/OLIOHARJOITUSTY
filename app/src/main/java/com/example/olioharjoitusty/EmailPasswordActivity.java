@@ -128,10 +128,15 @@ public class EmailPasswordActivity extends AppCompatActivity {
             //map.put("Hotel", "Trivago");
             //FirebaseDatabase.getInstance("https://olio-riku-default-rtdb.europe-west1.firebasedatabase.app/").getReference().child(path).child("message").updateChildren(map);
 
-            String username = user.getEmail();
+            String email = user.getEmail();
+            String name = user.getDisplayName();
+            String uid = user.getUid();
             Toast.makeText(EmailPasswordActivity.this, "Logging in succeeded!", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent();
-            intent.putExtra("key", username);
+
+            Account account = new Account(name, email, uid);
+            intent.putExtra("key", email);
+            intent.putExtra("name", name);
             setResult(RESULT_OK, intent);
             finish();
         }

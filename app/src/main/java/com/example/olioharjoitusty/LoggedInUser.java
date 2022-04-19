@@ -1,4 +1,4 @@
-package com.example.olioharjoitusty.data.model;
+package com.example.olioharjoitusty;
 
 /**
  * Data class that captures user information for logged in users retrieved from LoginRepository

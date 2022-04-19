@@ -1,6 +1,6 @@
 package com.example.olioharjoitusty.data;
 
-import com.example.olioharjoitusty.data.model.LoggedInUser;
+import com.example.olioharjoitusty.LoggedInUser;
 
 import java.io.IOException;
 

@@ -1,6 +1,6 @@
 package com.example.olioharjoitusty.data;
 
-import com.example.olioharjoitusty.data.model.LoggedInUser;
+import com.example.olioharjoitusty.LoggedInUser;
 
 /**
  * Class that requests authentication and user information from the remote data source and
