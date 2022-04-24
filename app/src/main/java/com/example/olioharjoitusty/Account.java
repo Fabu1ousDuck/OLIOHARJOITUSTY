@@ -1,6 +1,8 @@
 package com.example.olioharjoitusty;
 
-public class Account {
+import java.io.Serializable;
+
+public class Account implements Serializable {
     String name1;
     String email1;
     String uid2;

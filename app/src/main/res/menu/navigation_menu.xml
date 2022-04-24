@@ -5,4 +5,12 @@
     tools:context=".MainActivity">
     <item android:id="@+id/nav_login"
         android:title="Login"/>
+    <item android:id="@+id/nav_calender"
+        android:title="Calendar"/>
+    <item android:id="@+id/ratings"
+        android:title="Ratings"/>
+    <item android:id="@+id/nav_favourites"
+        android:title="Favourites"/>
+    <item android:id="@+id/nav_signout"
+        android:title="Sign out"/>
 </menu>

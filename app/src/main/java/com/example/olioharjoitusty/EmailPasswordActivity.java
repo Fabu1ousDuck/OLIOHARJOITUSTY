@@ -122,6 +122,7 @@ public class EmailPasswordActivity extends AppCompatActivity {
     private void updateUI(FirebaseUser user) {
         if (user != null){
             //String path = user.getUid();
+
             //TÄSSÄ ON MITEN KIRJOITTAA FIREBASEEN
             //HashMap <String , Object> map = new HashMap<>();
             //map.put("Greeting", "HELLO");
@@ -135,8 +136,7 @@ public class EmailPasswordActivity extends AppCompatActivity {
             Intent intent = new Intent();
 
             Account account = new Account(name, email, uid);
-            intent.putExtra("key", email);
-            intent.putExtra("name", name);
+            intent.putExtra("acc", account);
             setResult(RESULT_OK, intent);
             finish();
         }

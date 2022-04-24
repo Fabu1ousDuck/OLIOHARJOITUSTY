@@ -49,6 +49,12 @@ public class MainActivity extends AppCompatActivity {
                     startActivityForResult(intent,1);
                     return true;
                 }
+                if(id == R.id.nav_signout){
+                    String s = getResources().getString(R.string.logout);
+                    Toast.makeText(MainActivity.this, s, Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(MainActivity.this,)
+
+                }
 
                 return false;
             }
@@ -68,9 +74,9 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1) {
             if (resultCode == RESULT_OK) {
-                String username = data.getStringExtra("name");
                 TextView text = (TextView)findViewById(R.id.textView);
-
+                Account myObject = (Account) data.getSerializableExtra("acc");
+                text.setText(myObject.email1);
 
             }
         }
