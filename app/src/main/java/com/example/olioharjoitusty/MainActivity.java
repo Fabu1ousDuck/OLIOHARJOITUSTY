@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
 
         }
         text = (ListView) findViewById(R.id.listview);
-        ArrayAdapter<String> linesAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, movies);
+        ArrayAdapter linesAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, movies);
         text.setAdapter(linesAdapter);
 
     }
@@ -97,8 +97,7 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1) {
             if (resultCode == RESULT_OK) {
-                String username = data.getStringExtra("name");
-
+                System.out.println("RESULT OK");
 
             }
         }
