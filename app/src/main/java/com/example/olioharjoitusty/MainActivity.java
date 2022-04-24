@@ -10,10 +10,13 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,10 +25,20 @@ import com.firebase.ui.auth.data.model.User;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DatabaseReference;
 
+import java.util.ArrayList;
+
 
 public class MainActivity extends AppCompatActivity {
     private DrawerLayout nDrawerlayout;
     private ActionBarDrawerToggle nToggle;
+
+    ListView text;
+    Context context = null;
+    ArrayList<String> movies;
+    EditText search;
+    Button button;
+    MovieList movielist;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +67,22 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
+
+        context = MainActivity.this;
+        movies = new ArrayList<>();
+        search = (EditText) findViewById(R.id.search);
+        button = (Button) findViewById(R.id.button);
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+        movielist = new MovieList();
+        for (int i = 0; i < movielist.list1.size(); i++) {
+            movies.add(movielist.list1.get(i).name.toString());
+
+        }
+        text = (ListView) findViewById(R.id.listview);
+        ArrayAdapter<String> linesAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, movies);
+        text.setAdapter(linesAdapter);
+
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
@@ -69,12 +98,47 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == 1) {
             if (resultCode == RESULT_OK) {
                 String username = data.getStringExtra("name");
-                TextView text = (TextView)findViewById(R.id.textView);
 
 
             }
         }
 
+    }
+
+    public void searchMovie(View v) {
+        System.out.println("moi1");
+        String input = search.getText().toString();
+        String firstLetter = input.substring(0, 1);
+        String remainingLetters = input.substring(1, input.length());
+
+        // change the first letter to uppercase
+        firstLetter = firstLetter.toUpperCase();
+
+        // join the two substrings
+        input = firstLetter + remainingLetters;
+
+        ArrayList<String> find = new ArrayList<>();
+        if (!input.isEmpty()){
+            System.out.println("moi2");
+            for(int i = 0; i < movies.size(); i++){
+
+                System.out.println(movies.get(i));
+                if(movielist.list1.get(i).name.contains(input)) {
+                    System.out.println("moi4");
+                    find.add(movies.get(i));
+
+                }
+                if(movielist.list1.get(i).genre.contains(input)) {
+                    System.out.println("moi5");
+                    find.add(movies.get(i));
+
+
+                }
+            }
+            ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, find);
+            text.setAdapter(adapter);
+
+        }
     }
 
 

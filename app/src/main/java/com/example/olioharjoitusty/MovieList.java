@@ -15,12 +15,15 @@ import javax.xml.parsers.ParserConfigurationException;
 
 public class MovieList {
 
-    ArrayList<Movie> movieList;
+    ArrayList<Movie> list1;
+    ArrayList<String> movies = null;
     int llength;
+
+
 
     public MovieList() {
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-        movieList = new ArrayList<Movie>();
+        list1 = new ArrayList<Movie>();
 
         DocumentBuilder db = null;
         try {
@@ -50,7 +53,7 @@ public class MovieList {
                 String length = element.getElementsByTagName("LengthInMinutes").item(0).getTextContent();
                 String year = element.getElementsByTagName("ProductionYear").item(0).getTextContent();
 
-                movieList.add(new Movie(title,length,year,genre));
+                list1.add(new Movie(title,length,year,genre));
                 System.out.println();
                 System.out.println(title + length);
             }
@@ -59,14 +62,14 @@ public class MovieList {
 
 
     public void addMovie(String name, String length, String year,String genre) {
-        movieList.add(new Movie(name,length,year,genre));
+        list1.add(new Movie(name,length,year,genre));
         llength++;
     }
 
     public ArrayList getNames() {
         ArrayList names = new ArrayList();
         for (int position = 0; position < llength; position++) {
-            String a = movieList.get(position).getMovName();
+            String a = list1.get(position).getMovName();
             names.add(a);
         }
         System.out.println("moi");
@@ -76,8 +79,8 @@ public class MovieList {
     public String getLength(String movie) {
         String length = null;
         for (int i = 0; i < llength; i++) {
-            if (movie.contains(movieList.get(i).getMovName())) {
-                length = movieList.get(i).length;
+            if (movie.contains(list1.get(i).getLength())) {
+                length = list1.get(i).length;
             }
         }
         return length;
@@ -86,22 +89,21 @@ public class MovieList {
     public String getYear(String movie) {
         String year = null;
         for (int i = 0; i < llength; i++) {
-            if (movie.contains(movieList.get(i).getMovName())) {
-                year = movieList.get(i).year;
+            if (movie.contains(list1.get(i).getYear())) {
+                year = list1.get(i).year;
             }
         }
         return year;
     }
 
-    public String  getGenre(String movie) {
+    public String getGenre(String movie) {
         String genre = null;
         for (int i = 0; i < llength; i++) {
-            if (movie.contains(movieList.get(i).getMovName())) {
-                genre = movieList.get(i).genre;
+            if (movie.contains(list1.get(i).getGenre())) {
+                genre = list1.get(i).genre;
             }
         }
         return genre;
     }
 }
-
 
