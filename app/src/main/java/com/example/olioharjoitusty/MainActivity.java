@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     EditText search;
     Button button;
     MovieList movielist;
+    Account account;
 
 
     @Override
@@ -47,8 +49,11 @@ public class MainActivity extends AppCompatActivity {
         nDrawerlayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         nToggle = new ActionBarDrawerToggle(this, nDrawerlayout,R.string.open,R.string.close);
         nDrawerlayout.addDrawerListener(nToggle);
+        context = MainActivity.this;
         nToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Intent intent = new Intent(context, EmailPasswordActivity.class);
+        startActivityForResult(intent,1);
         final NavigationView nav_view = (NavigationView) findViewById(R.id.navigationView);
         nav_view.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -57,8 +62,8 @@ public class MainActivity extends AppCompatActivity {
 
                 if(id == R.id.nav_login){
                     String s = getResources().getString(R.string.login);
-                    Toast.makeText(MainActivity.this, s, Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(MainActivity.this, EmailPasswordActivity.class);
+                    Toast.makeText(context, s, Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(context, EmailPasswordActivity.class);
                     startActivityForResult(intent,1);
                     return true;
                 }
@@ -67,8 +72,6 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
-
-        context = MainActivity.this;
         movies = new ArrayList<>();
         search = (EditText) findViewById(R.id.search);
         button = (Button) findViewById(R.id.button);
@@ -77,13 +80,24 @@ public class MainActivity extends AppCompatActivity {
         movielist = new MovieList();
         for (int i = 0; i < movielist.list1.size(); i++) {
             movies.add(movielist.list1.get(i).name.toString());
-
         }
         text = (ListView) findViewById(R.id.listview);
         ArrayAdapter linesAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, movies);
         text.setAdapter(linesAdapter);
+        text.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String x = text.getItemAtPosition(i).toString();
+                Intent intent = new Intent(context, ReviewActivity.class);
+                intent.putExtra("MovieName", x);
+                intent.putExtra("userid", account.uid2);
+                startActivityForResult(intent,2);
+                System.out.println(x);
+            }
+        });
 
-    }
+        }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
         if (nToggle.onOptionsItemSelected(item)){
@@ -92,13 +106,13 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1) {
             if (resultCode == RESULT_OK) {
-                System.out.println("RESULT OK");
-
+                account = (Account) data.getSerializableExtra("acc");
             }
         }
 

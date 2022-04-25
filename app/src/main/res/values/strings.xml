@@ -14,4 +14,5 @@
     <string name="login">Login</string>
     <string name="register">Register</string>
     <string name="logout">Log out</string>
+    <string name="publish">Publish</string>
 </resources>
