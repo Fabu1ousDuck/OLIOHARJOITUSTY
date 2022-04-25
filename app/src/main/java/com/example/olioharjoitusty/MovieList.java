@@ -72,7 +72,6 @@ public class MovieList {
             String a = list1.get(position).getMovName();
             names.add(a);
         }
-        System.out.println("moi");
         return names;
     }
 

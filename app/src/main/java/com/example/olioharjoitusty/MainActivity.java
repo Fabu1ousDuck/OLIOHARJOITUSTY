@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getSupportActionBar().setTitle("Movisio");
         nDrawerlayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         nToggle = new ActionBarDrawerToggle(this, nDrawerlayout,R.string.open,R.string.close);
         nDrawerlayout.addDrawerListener(nToggle);
@@ -118,6 +119,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //search movies by name, genre or actor
     public void searchMovie(View v) {
         String input = search.getText().toString();
         String firstLetter = input.substring(0, 1);
@@ -143,6 +145,10 @@ public class MainActivity extends AppCompatActivity {
 
 
                 }
+            }
+            if (find.isEmpty()) {
+
+                find.add("Movie not found");
             }
             ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, find);
             text.setAdapter(adapter);

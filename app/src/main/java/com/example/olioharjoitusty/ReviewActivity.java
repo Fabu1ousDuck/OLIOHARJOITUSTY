@@ -16,6 +16,7 @@ public class ReviewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_review);
+        getSupportActionBar().setTitle("Movisio");
         Intent intent = getIntent();
         RatingBar ratingBar = (RatingBar) findViewById(R.id.ratingBar);
         TextView moviename = (TextView) findViewById(R.id.ratingMovieName);

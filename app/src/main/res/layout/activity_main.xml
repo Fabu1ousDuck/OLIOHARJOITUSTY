@@ -28,6 +28,7 @@
             android:ems="10"
             android:hint="Search"
             android:inputType="textPersonName"
+            android:onClick="searchMovie"
             app:layout_constraintBottom_toTopOf="@+id/listview"
             app:layout_constraintEnd_toStartOf="@+id/button"
             app:layout_constraintStart_toStartOf="parent"
