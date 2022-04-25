@@ -23,7 +23,6 @@ public class ReviewActivity extends AppCompatActivity {
         String name = intent.getStringExtra("MovieName");
 
         String userid = intent.getStringExtra("userid");
-
         moviename.setText(name);
         Button publishbutton = (Button) findViewById(R.id.publishbutton);
         review = new Review();
