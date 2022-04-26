@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Intent intent = new Intent(context, EmailPasswordActivity.class);
         startActivityForResult(intent,1);
+
         final NavigationView nav_view = (NavigationView) findViewById(R.id.navigationView);
         nav_view.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -66,6 +67,11 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(context, s, Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(context, EmailPasswordActivity.class);
                     startActivityForResult(intent,1);
+                    return true;
+                }else if (id == R.id.nav_favourites){
+                    Intent intent = new Intent(context, UserReviewActivity.class);
+                    intent.putExtra("acc", account);
+                    startActivity(intent);
                     return true;
                 }
 
@@ -154,11 +160,5 @@ public class MainActivity extends AppCompatActivity {
             text.setAdapter(adapter);
 
         }
-    }
-
-    @Override
-    protected void onDestroy() {
-
-        super.onDestroy();
     }
 }

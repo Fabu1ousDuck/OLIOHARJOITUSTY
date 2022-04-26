@@ -39,6 +39,8 @@ public class MovieList {
             e.printStackTrace();
         } catch (SAXException e) {
             e.printStackTrace();
+        } catch (NullPointerException e){
+            e.printStackTrace();
         }
         doc.getDocumentElement().normalize();
         NodeList list = doc.getDocumentElement().getElementsByTagName("Event");

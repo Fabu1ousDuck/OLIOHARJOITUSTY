@@ -9,13 +9,17 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.Map;
+
 public class ReviewActivity extends AppCompatActivity {
     Review review;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_review);
+        setContentView(R.layout.activity_review);
         getSupportActionBar().setTitle("Movisio");
         Intent intent = getIntent();
         RatingBar ratingBar = (RatingBar) findViewById(R.id.ratingBar);
@@ -26,6 +30,7 @@ public class ReviewActivity extends AppCompatActivity {
         moviename.setText(name);
         Button publishbutton = (Button) findViewById(R.id.publishbutton);
         review = new Review();
+        review.setMovieName(name);
 
         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
@@ -38,7 +43,9 @@ public class ReviewActivity extends AppCompatActivity {
         publishbutton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                review.publishReview(userid, name);
+
+                FirebaseDatabase.getInstance("https://olio-riku-default-rtdb.europe-west1.firebasedatabase.app/").
+                        getReference().child("Review").child(userid).child(review.getMovieName()).setValue(review);
             }
         }
         );

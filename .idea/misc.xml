@@ -4,11 +4,11 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.18796296296296297" />
-        <entry key="..\:/Users/annik/AndroidStudioProjects/OLIOHARJOITUSTY/app/src/main/res/layout/activity_main.xml" value="0.26927083333333335" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.15277099609375" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25616455078125006" />
+        <entry key="app/src/main/res/layout/activity_userreview.xml" value="0.1802536231884058" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/fragment_review.xml" value="0.2057769775390625" />
+        <entry key="app/src/main/res/layout/fragment_review.xml" value="0.1" />
         <entry key="app/src/main/res/menu/navigation_menu.xml" value="0.1" />
       </map>
     </option>
