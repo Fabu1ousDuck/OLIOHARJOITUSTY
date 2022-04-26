@@ -1,12 +1,5 @@
 package com.example.olioharjoitusty;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
-
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,13 +11,14 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.olioharjoitusty.ui.login.LoginActivity;
-import com.firebase.ui.auth.data.model.User;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
+
 import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.database.DatabaseReference;
 
 import java.util.ArrayList;
 
@@ -72,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
                     Intent intent = new Intent(context, UserReviewActivity.class);
                     intent.putExtra("acc", account);
                     startActivity(intent);
+                    return true;
+                }else if (id == R.id.nav_signout){
                     return true;
                 }
 
@@ -148,8 +144,6 @@ public class MainActivity extends AppCompatActivity {
                 }
                 if(movielist.list1.get(i).genre.contains(input)) {
                     find.add(movies.get(i));
-
-
                 }
             }
             if (find.isEmpty()) {
@@ -158,7 +152,6 @@ public class MainActivity extends AppCompatActivity {
             }
             ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, find);
             text.setAdapter(adapter);
-
         }
     }
 }
