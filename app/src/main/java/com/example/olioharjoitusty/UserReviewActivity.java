@@ -70,29 +70,32 @@ public class UserReviewActivity extends AppCompatActivity {
 
     }
     public void onFinish(ArrayList <Review> movieObjects){
-        favourites = orderbyReview(movieObjects);
-        ArrayAdapter linesAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, favourites);
-        text.setAdapter(linesAdapter);
-        text.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String x = text.getItemAtPosition(i).toString();
-                Intent intent = new Intent(context, ReviewActivity.class);
-                intent.putExtra("MovieName", x);
-                intent.putExtra("userid", account.uid2);
-                startActivityForResult(intent,2);
-                System.out.println(x);
-            }
-        });
-    }
-    public ArrayList<String> orderbyReview(ArrayList<Review> movieObjects){
-
-        Collections.sort(movieObjects, new Sortbyreview());
+        movieObjects = orderbyReview(movieObjects);
         for (int i = 0; i < movieObjects.size(); i++){
             String x = movieObjects.get(i).getMovieName()+ "    "+movieObjects.get(i).getReviewScore();
             favourites.add(x);
         }
-        return favourites;
+        ArrayAdapter linesAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, favourites);
+        text.setAdapter(linesAdapter);
+        ArrayList<Review> finalMovieObjects = movieObjects;
+        text.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String x = finalMovieObjects.get(i).getMovieName();
+                String score = Float.toString(finalMovieObjects.get(i).getReviewScore());
+                Intent intent = new Intent(context, ReviewActivity.class);
+                intent.putExtra("MovieName", x);
+                intent.putExtra("Score", score);
+                intent.putExtra("userid", account.uid2);
+                startActivityForResult(intent,3);
+                System.out.println(x);
+            }
+        });
+    }
+    public ArrayList<Review> orderbyReview(ArrayList<Review> movieObjects){
+
+        Collections.sort(movieObjects, new Sortbyreview());
+        return movieObjects;
     }
 
 }

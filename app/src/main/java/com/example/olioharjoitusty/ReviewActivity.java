@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -24,8 +25,11 @@ public class ReviewActivity extends AppCompatActivity {
         Intent intent = getIntent();
         RatingBar ratingBar = (RatingBar) findViewById(R.id.ratingBar);
         TextView moviename = (TextView) findViewById(R.id.ratingMovieName);
+        if (intent.hasExtra("Score")){
+            Float score = Float.valueOf(intent.getStringExtra("Score"));
+            ratingBar.setRating(score);
+        }
         String name = intent.getStringExtra("MovieName");
-
         String userid = intent.getStringExtra("userid");
         moviename.setText(name);
         Button publishbutton = (Button) findViewById(R.id.publishbutton);
@@ -46,11 +50,18 @@ public class ReviewActivity extends AppCompatActivity {
 
                 FirebaseDatabase.getInstance("https://olio-riku-default-rtdb.europe-west1.firebasedatabase.app/").
                         getReference().child("Review").child(userid).child(review.getMovieName()).setValue(review);
+                finishReview();
             }
         }
         );
 
 
+    }
+    public void finishReview(){
+        Toast.makeText(ReviewActivity.this, "Rating published", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent();
+        setResult(RESULT_OK, intent);
+        finish();
     }
 
 }
