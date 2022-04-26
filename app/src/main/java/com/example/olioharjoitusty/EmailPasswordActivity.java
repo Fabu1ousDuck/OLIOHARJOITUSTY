@@ -140,6 +140,7 @@ public class EmailPasswordActivity extends AppCompatActivity {
             intent.putExtra("acc", account);
             setResult(RESULT_OK, intent);
             finish();
+
         }
     }
 }
