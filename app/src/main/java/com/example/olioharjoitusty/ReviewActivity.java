@@ -13,10 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.time.LocalDate;
-import java.util.Date;
-import java.util.Map;
-
 public class ReviewActivity extends AppCompatActivity {
     Review review;
     String date;
@@ -33,11 +29,13 @@ public class ReviewActivity extends AppCompatActivity {
         EditText reviewString = (EditText) findViewById(R.id.editTextReview);
         EditText datestring = (EditText) findViewById(R.id.editTextDate);
 
+        String name = intent.getStringExtra("MovieName");
+        String userid = intent.getStringExtra("userid");
         reviewString.setText(" ");
         date = java.time.LocalDate.now().toString();
         datestring.setText(java.time.LocalDate.now().toString());
         if (intent.hasExtra("Score")){
-            Float score = Float.valueOf(intent.getStringExtra("Score"));
+            float score = Float.parseFloat(intent.getStringExtra("Score"));
             ratingBar.setRating(score);
         }
         if (intent.hasExtra("Date")){
@@ -46,8 +44,7 @@ public class ReviewActivity extends AppCompatActivity {
         if (intent.hasExtra("Review")){
             reviewString.setText(intent.getStringExtra("Review"));
         }
-        String name = intent.getStringExtra("MovieName");
-        String userid = intent.getStringExtra("userid");
+
         moviename.setText(name);
         Button publishbutton = (Button) findViewById(R.id.publishbutton);
         review = new Review();

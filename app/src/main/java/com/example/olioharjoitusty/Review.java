@@ -1,7 +1,6 @@
 package com.example.olioharjoitusty;
 
 import java.io.Serializable;
-import java.util.Date;
 
 public class Review implements Serializable {
     private float reviewScore;
