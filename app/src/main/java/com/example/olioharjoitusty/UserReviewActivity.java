@@ -83,9 +83,13 @@ public class UserReviewActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String x = finalMovieObjects.get(i).getMovieName();
                 String score = Float.toString(finalMovieObjects.get(i).getReviewScore());
+                String date = finalMovieObjects.get(i).getDate();
+                String reviewString = finalMovieObjects.get(i).getReviewString();
                 Intent intent = new Intent(context, ReviewActivity.class);
                 intent.putExtra("MovieName", x);
                 intent.putExtra("Score", score);
+                intent.putExtra("Date", date);
+                intent.putExtra("Review", reviewString);
                 intent.putExtra("userid", account.uid2);
                 startActivityForResult(intent,3);
                 System.out.println(x);
