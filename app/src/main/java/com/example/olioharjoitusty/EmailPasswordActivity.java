@@ -71,9 +71,8 @@ public class EmailPasswordActivity extends AppCompatActivity {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser != null){
+        if(currentUser != null)
             reload();
-        }
     }
 
     private void createAccount(String email, String password) {
@@ -128,7 +127,11 @@ public class EmailPasswordActivity extends AppCompatActivity {
                     }
                 });
     }
-    private void reload() { }
+    private void reload() {
+        mAuth.signOut();
+        Toast.makeText(EmailPasswordActivity.this, "Signed out successfully",
+                Toast.LENGTH_SHORT).show();
+    }
     private void updateUI(FirebaseUser user) {
         if (user != null){
             //String path = user.getUid();

@@ -15,4 +15,6 @@
     <string name="register">Register</string>
     <string name="logout">Log out</string>
     <string name="publish">Publish</string>
+    <string name="back">before</string>
+
 </resources>

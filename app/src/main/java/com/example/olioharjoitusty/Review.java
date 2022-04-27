@@ -18,7 +18,7 @@ public class Review implements Serializable {
     }
     public void setMovieName(String name){ movieName = name; }
     public void setDate(String date1){date = date1;}
-    public void setReviewString(String reviewString1){reviewString = reviewString;}
+    public void setReviewString(String reviewString1){reviewString = reviewString1;}
     public float getReviewScore(){return reviewScore;}
     public String getMovieName() { return movieName; }
     public String getReviewString(){return reviewString;}

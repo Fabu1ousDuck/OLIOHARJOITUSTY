@@ -61,13 +61,8 @@ public class ReviewActivity extends AppCompatActivity {
         publishbutton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                reviewString.getText();
-                if(!date.equals(datestring.getText().toString())){
-                    review.setDate(datestring.getText().toString());
-                }else{review.setDate(date);}
-                if(!reviewString.getText().toString().equals(" ")){
-                    review.setReviewString(reviewString.getText().toString());
-                }else{review.setReviewString("");}
+                review.setDate(String.valueOf(datestring.getText()));
+                review.setReviewString(String.valueOf(reviewString.getText()));
                 FirebaseDatabase.getInstance("https://olio-riku-default-rtdb.europe-west1.firebasedatabase.app/").
                         getReference().child("Review").child(userid).child(review.getMovieName()).setValue(review);
                 finishReview();

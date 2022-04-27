@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 int id = menuItem.getItemId();
 
-                if(id == R.id.nav_login){
+                if(id == R.id.nav_signout){
                     String s = getResources().getString(R.string.login);
                     Toast.makeText(context, s, Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(context, EmailPasswordActivity.class);
@@ -67,10 +67,7 @@ public class MainActivity extends AppCompatActivity {
                     intent.putExtra("acc", account);
                     startActivity(intent);
                     return true;
-                }else if (id == R.id.nav_signout){
-                    return true;
                 }
-
                 return false;
             }
 
