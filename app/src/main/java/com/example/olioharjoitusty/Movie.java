@@ -29,20 +29,5 @@ public class Movie {
         this.actorArrayList = actorArrayList;
     }
 
-    public String getMovName() {
-        return name;
-    }
-
-    public String getLength(){
-        return length;
-    }
-
-    public String getYear(){
-        return year;
-    }
-
-    public String getGenre(){
-        return genre;
-    }
 
 }

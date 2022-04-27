@@ -16,8 +16,6 @@ import javax.xml.parsers.ParserConfigurationException;
 public class MovieList {
 
     ArrayList<Movie> list1;
-    ArrayList<String> movies = null;
-    int llength;
 
 
 
@@ -83,48 +81,6 @@ public class MovieList {
     }
 
 
-    public void addMovie(String name, String length, String year,String genre,ArrayList <Actor> actorList) {
-        list1.add(new Movie(name,length,year,genre,actorList));
-        llength++;
-    }
 
-    public ArrayList getNames() {
-        ArrayList names = new ArrayList();
-        for (int position = 0; position < llength; position++) {
-            String a = list1.get(position).getMovName();
-            names.add(a);
-        }
-        return names;
-    }
-
-    public String getLength(String movie) {
-        String length = null;
-        for (int i = 0; i < llength; i++) {
-            if (movie.contains(list1.get(i).getLength())) {
-                length = list1.get(i).length;
-            }
-        }
-        return length;
-    }
-
-    public String getYear(String movie) {
-        String year = null;
-        for (int i = 0; i < llength; i++) {
-            if (movie.contains(list1.get(i).getYear())) {
-                year = list1.get(i).year;
-            }
-        }
-        return year;
-    }
-
-    public String getGenre(String movie) {
-        String genre = null;
-        for (int i = 0; i < llength; i++) {
-            if (movie.contains(list1.get(i).getGenre())) {
-                genre = list1.get(i).genre;
-            }
-        }
-        return genre;
-    }
 }
 
