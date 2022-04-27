@@ -13,6 +13,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Objects;
+
 public class ReviewActivity extends AppCompatActivity {
     Review review;
     String date;
@@ -21,8 +23,9 @@ public class ReviewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review);
-        getSupportActionBar().setTitle("Movisio");
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Movisio");
         Intent intent = getIntent();
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Movisio");
 
         RatingBar ratingBar = (RatingBar) findViewById(R.id.ratingBar);
         TextView moviename = (TextView) findViewById(R.id.ratingMovieName);

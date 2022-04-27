@@ -12,6 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OLIOHARJOITUSTYÖ">
         <activity
+            android:name=".MovieDashboardActivity"/>
+        <activity
             android:name=".EmailPasswordActivity"/>
         <activity
             android:name=".UserReviewActivity"/>

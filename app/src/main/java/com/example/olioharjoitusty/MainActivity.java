@@ -20,7 +20,9 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Objects;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -40,8 +42,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getSupportActionBar().setTitle("Movisio");
-        nDrawerlayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Movisio");
+        nDrawerlayout = findViewById(R.id.drawerLayout);
         nToggle = new ActionBarDrawerToggle(this, nDrawerlayout,R.string.open,R.string.close);
         nDrawerlayout.addDrawerListener(nToggle);
         context = MainActivity.this;
@@ -50,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(context, EmailPasswordActivity.class);
         startActivityForResult(intent,1);
 
-        final NavigationView nav_view = (NavigationView) findViewById(R.id.navigationView);
+        final NavigationView nav_view = findViewById(R.id.navigationView);
         nav_view.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -67,21 +69,27 @@ public class MainActivity extends AppCompatActivity {
                     intent.putExtra("acc", account);
                     startActivity(intent);
                     return true;
+                }else if (id == R.id.movie_dashoboard) {
+                    Intent intent = new Intent(context, MovieDashboardActivity.class);
+                    intent.putExtra("acc", account);
+                    intent.putExtra("list", (Serializable) movielist);
+                    startActivity(intent);
+                    return true;
                 }
                 return false;
             }
 
         });
         movies = new ArrayList<>();
-        search = (EditText) findViewById(R.id.search);
-        button = (Button) findViewById(R.id.button);
+        search = findViewById(R.id.search);
+        button = findViewById(R.id.button);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
         movielist = new MovieList();
         for (int i = 0; i < movielist.list1.size(); i++) {
             movies.add(movielist.list1.get(i).getMovName());
         }
-        text = (ListView) findViewById(R.id.listview);
+        text = findViewById(R.id.listview);
         ArrayAdapter linesAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, movies);
         text.setAdapter(linesAdapter);
         text.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -121,50 +129,51 @@ public class MainActivity extends AppCompatActivity {
 
     //search movies by name, genre or actor
     public void searchMovie(View v) {
-        String input = search.getText().toString();
-        String firstLetter = input.substring(0, 1);
-        String remainingLetters = input.substring(1, input.length());
-
-        // change the first letter to uppercase
-        firstLetter = firstLetter.toUpperCase();
-
-        // join the two substrings
-        input = firstLetter + remainingLetters;
-
+        String input = "";
         ArrayList<String> find = new ArrayList<>();
-        if (!input.isEmpty()){
-            for(int i = 0; i < movies.size(); i++) {
+        if(!search.getText().toString().isEmpty()) {
+            input = search.getText().toString();
+            String firstLetter = input.substring(0, 1);
+            String remainingLetters = input.substring(1);
+            // change the first letter to uppercase
+            firstLetter = firstLetter.toUpperCase();
 
+            // join the two substrings
+            input = firstLetter + remainingLetters;
+
+            for (int i = 0; i < movies.size(); i++) {
                 System.out.println(movies.get(i));
+
                 if (movielist.list1.get(i).getMovName().contains(input)) {
                     find.add(movies.get(i));
-
                 }
+
                 if (movielist.list1.get(i).getGenre().contains(input)) {
                     find.add(movies.get(i));
                 }
 
-
                 for (Actor a : movielist.list1.get(i).getActorArraylist()) {
                     String fullName = a.getFirstname() + " " + a.getLastname();
-
 
                     if (fullName.equalsIgnoreCase(input)) {
                         System.out.println(fullName);
                         find.add(movies.get(i));
+
                     } else if (a.getFirstname().equalsIgnoreCase(input)) {
                         find.add(movies.get(i));
+
                     } else if (a.getLastname().equalsIgnoreCase(input)) {
                         find.add(movies.get(i));
                     }
                 }
             }
             if (find.isEmpty()) {
-
                 find.add("Movie not found");
             }
-            ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, find);
-            text.setAdapter(adapter);
+        }else{
+            find = movies;
         }
+        ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, find);
+        text.setAdapter(adapter);
     }
 }

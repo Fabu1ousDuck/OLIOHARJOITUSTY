@@ -19,11 +19,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Objects;
 
 public class UserReviewActivity extends AppCompatActivity {
     ListView text;
@@ -36,7 +35,7 @@ public class UserReviewActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_userreview);
-        getSupportActionBar().setTitle("Movisio");
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Movisio");
 
         Intent intent = getIntent();
         account = (Account) intent.getSerializableExtra("acc");

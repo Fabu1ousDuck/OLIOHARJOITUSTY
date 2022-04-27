@@ -2,12 +2,6 @@ package com.example.olioharjoitusty;
 
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,6 +10,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
+
 import com.example.olioharjoitusty.ui.login.LoginViewModel;
 import com.example.olioharjoitusty.ui.login.LoginViewModelFactory;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -23,30 +21,25 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.HashMap;
+import java.util.Objects;
 
 public class EmailPasswordActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private EditText username;
-    private LoginViewModel loginViewModel;
     private EditText password;
-    private Button signin;
-    private Button signup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        getSupportActionBar().setTitle("Movisio");
-        loginViewModel = new ViewModelProvider(this, new LoginViewModelFactory())
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Movisio");
+        LoginViewModel loginViewModel = new ViewModelProvider(this, new LoginViewModelFactory())
                 .get(LoginViewModel.class);
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
-        signin = (Button) findViewById(R.id.login);
-        signup = (Button) findViewById(R.id.signup);
+        Button signin = (Button) findViewById(R.id.login);
+        Button signup = (Button) findViewById(R.id.signup);
 
         signin.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
