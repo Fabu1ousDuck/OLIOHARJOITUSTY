@@ -1,8 +1,8 @@
 package com.example.olioharjoitusty;
 
 public class Actor {
-    String firstname;
-    String lastname;
+    private String firstname;
+    private String lastname;
 
 
     public Actor (String firstname, String lastname) {
