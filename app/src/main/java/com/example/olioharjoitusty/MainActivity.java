@@ -143,11 +143,11 @@ public class MainActivity extends AppCompatActivity {
 
             for (int i = 0; i < movies.size(); i++) {
                 System.out.println(movies.get(i));
-
+                //search movie by its title
                 if (movielist.list1.get(i).getMovName().contains(input)) {
                     find.add(movies.get(i));
                 }
-
+                //search movie by its genre
                 if (movielist.list1.get(i).getGenre().contains(input)) {
                     find.add(movies.get(i));
                 }
@@ -155,13 +155,14 @@ public class MainActivity extends AppCompatActivity {
                 for (Actor a : movielist.list1.get(i).getActorArraylist()) {
                     String fullName = a.getFirstname() + " " + a.getLastname();
 
+                        //search movie by actor's full name
                     if (fullName.equalsIgnoreCase(input)) {
-                        System.out.println(fullName);
                         find.add(movies.get(i));
 
+                        //search movie by actor's first name
                     } else if (a.getFirstname().equalsIgnoreCase(input)) {
                         find.add(movies.get(i));
-
+                        //search movie by actor's last name
                     } else if (a.getLastname().equalsIgnoreCase(input)) {
                         find.add(movies.get(i));
                     }

@@ -11,7 +11,7 @@ public class Actor {
 
     }
 
-
+    //adding methods for getting the private variables
     public String getFirstname(){
         return firstname;
     }

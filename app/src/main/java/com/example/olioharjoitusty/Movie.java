@@ -24,11 +24,10 @@ public class Movie {
         this.genre = genre;
         this.actorArrayList = actorArrayList;
     }
-
+    //adding methods for getting the private variables
     public String getMovName() {
         return name;
     }
-
 
     public String getGenre(){
         return genre;
