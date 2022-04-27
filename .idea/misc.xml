@@ -4,13 +4,16 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.18796296296296297" />
-        <entry key="app/src/main/res/layout/activity_login.xml" value="0.3156158447265625" />
+        <entry key="app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25616455078125006" />
         <entry key="app/src/main/res/layout/activity_review.xml" value="0.21105072463768115" />
         <entry key="app/src/main/res/layout/activity_userreview.xml" value="0.1802536231884058" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_review.xml" value="0.1" />
         <entry key="app/src/main/res/menu/navigation_menu.xml" value="0.1" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1" />
       </map>
     </option>
   </component>

@@ -90,6 +90,7 @@ public class UserReviewActivity extends AppCompatActivity {
                 intent.putExtra("Score", score);
                 intent.putExtra("Date", date);
                 intent.putExtra("Review", reviewString);
+
                 intent.putExtra("userid", account.uid2);
                 startActivityForResult(intent,3);
                 System.out.println(x);
