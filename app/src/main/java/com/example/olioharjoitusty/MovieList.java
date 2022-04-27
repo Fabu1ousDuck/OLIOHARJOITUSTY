@@ -45,7 +45,7 @@ public class MovieList {
         doc.getDocumentElement().normalize();
         NodeList list = doc.getDocumentElement().getElementsByTagName("Event");
         for (int temp = 0; temp < list.getLength(); temp++) {
-
+            ArrayList<Actor> actorList = new ArrayList<>();
             Node node = list.item(temp);
             if (node.getNodeType() == Node.ELEMENT_NODE) {
                 Element element = (Element) node;
@@ -55,16 +55,36 @@ public class MovieList {
                 String length = element.getElementsByTagName("LengthInMinutes").item(0).getTextContent();
                 String year = element.getElementsByTagName("ProductionYear").item(0).getTextContent();
 
-                list1.add(new Movie(title,length,year,genre));
-                System.out.println();
-                System.out.println(title + length);
+                list1.add(new Movie(title,length,year,genre,actorList));
+                Node cast = element.getElementsByTagName("Cast").item(0);
+
+
+                if (cast.getNodeType() == Node.ELEMENT_NODE) {
+                    Element castEl = (Element) cast;
+                    NodeList actors = castEl.getElementsByTagName("Actor");
+
+                    for (int i = 0; i < actors.getLength(); i++) {
+                        Node actorNode = actors.item(i);
+                        if (actorNode.getNodeType() == Node.ELEMENT_NODE) {
+                            Element actorEl = (Element) actorNode;
+                            String first = actorEl.getElementsByTagName("FirstName").item(0).getTextContent();
+                            String last = actorEl.getElementsByTagName("LastName").item(0).getTextContent();
+                            actorList.add(new Actor(first, last));
+
+                        }
+                    }
+
+
+
+
+                }
             }
         }
     }
 
 
-    public void addMovie(String name, String length, String year,String genre) {
-        list1.add(new Movie(name,length,year,genre));
+    public void addMovie(String name, String length, String year,String genre,ArrayList <Actor> actorList) {
+        list1.add(new Movie(name,length,year,genre,actorList));
         llength++;
     }
 

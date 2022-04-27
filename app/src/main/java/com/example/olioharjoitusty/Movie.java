@@ -7,6 +7,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -17,14 +18,15 @@ public class Movie {
     String length;
     String year;
     String genre;
+    ArrayList<Actor> actorArrayList = new ArrayList<>();
 
-    public Movie ( String name, String length, String year,String genre) {
+    public Movie ( String name, String length, String year,String genre,ArrayList<Actor> actorArrayList) {
 
         this.name = name;
         this.length = length;
         this.year = year;
         this.genre = genre;
-
+        this.actorArrayList = actorArrayList;
     }
 
     public String getMovName() {

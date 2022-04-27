@@ -110,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -135,15 +136,30 @@ public class MainActivity extends AppCompatActivity {
 
         ArrayList<String> find = new ArrayList<>();
         if (!input.isEmpty()){
-            for(int i = 0; i < movies.size(); i++){
+            for(int i = 0; i < movies.size(); i++) {
 
                 System.out.println(movies.get(i));
-                if(movielist.list1.get(i).name.contains(input)) {
+                if (movielist.list1.get(i).name.contains(input)) {
                     find.add(movies.get(i));
 
                 }
-                if(movielist.list1.get(i).genre.contains(input)) {
+                if (movielist.list1.get(i).genre.contains(input)) {
                     find.add(movies.get(i));
+                }
+
+
+                for (Actor a : movielist.list1.get(i).actorArrayList) {
+                    String fullName = a.getFirstname() + " " + a.getLastname();
+
+
+                    if (fullName.equalsIgnoreCase(input)) {
+                        System.out.println(fullName);
+                        find.add(movies.get(i));
+                    } else if (a.getFirstname().equalsIgnoreCase(input)) {
+                        find.add(movies.get(i));
+                    } else if (a.getLastname().equalsIgnoreCase(input)) {
+                        find.add(movies.get(i));
+                    }
                 }
             }
             if (find.isEmpty()) {
