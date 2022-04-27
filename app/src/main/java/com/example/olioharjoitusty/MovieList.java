@@ -53,7 +53,7 @@ public class MovieList {
                 String length = element.getElementsByTagName("LengthInMinutes").item(0).getTextContent();
                 String year = element.getElementsByTagName("ProductionYear").item(0).getTextContent();
 
-                list1.add(new Movie(title,length,year,genre,actorList));
+                list1.add(new Movie(title,genre,actorList));
                 Node cast = element.getElementsByTagName("Cast").item(0);
 
 

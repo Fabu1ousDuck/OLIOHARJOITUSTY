@@ -14,20 +14,27 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 public class Movie {
-    String name;
-    String length;
-    String year;
-    String genre;
-    ArrayList<Actor> actorArrayList = new ArrayList<>();
+    private String name;
+    private String genre;
+    private ArrayList<Actor> actorArrayList = new ArrayList<>();
 
-    public Movie ( String name, String length, String year,String genre,ArrayList<Actor> actorArrayList) {
+    public Movie ( String name,String genre,ArrayList<Actor> actorArrayList) {
 
         this.name = name;
-        this.length = length;
-        this.year = year;
         this.genre = genre;
         this.actorArrayList = actorArrayList;
     }
 
+    public String getMovName() {
+        return name;
+    }
 
+
+    public String getGenre(){
+        return genre;
+    }
+
+    public ArrayList<Actor> getActorArraylist(){
+        return actorArrayList;
+    }
 }

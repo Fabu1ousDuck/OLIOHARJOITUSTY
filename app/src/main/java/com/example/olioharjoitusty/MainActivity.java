@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
         StrictMode.setThreadPolicy(policy);
         movielist = new MovieList();
         for (int i = 0; i < movielist.list1.size(); i++) {
-            movies.add(movielist.list1.get(i).name.toString());
+            movies.add(movielist.list1.get(i).getMovName());
         }
         text = (ListView) findViewById(R.id.listview);
         ArrayAdapter linesAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, movies);
@@ -139,16 +139,16 @@ public class MainActivity extends AppCompatActivity {
             for(int i = 0; i < movies.size(); i++) {
 
                 System.out.println(movies.get(i));
-                if (movielist.list1.get(i).name.contains(input)) {
+                if (movielist.list1.get(i).getMovName().contains(input)) {
                     find.add(movies.get(i));
 
                 }
-                if (movielist.list1.get(i).genre.contains(input)) {
+                if (movielist.list1.get(i).getGenre().contains(input)) {
                     find.add(movies.get(i));
                 }
 
 
-                for (Actor a : movielist.list1.get(i).actorArrayList) {
+                for (Actor a : movielist.list1.get(i).getActorArraylist()) {
                     String fullName = a.getFirstname() + " " + a.getLastname();
 
 

@@ -36,6 +36,7 @@ public class UserReviewActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_userreview);
+        getSupportActionBar().setTitle("Movisio");
 
         Intent intent = getIntent();
         account = (Account) intent.getSerializableExtra("acc");
